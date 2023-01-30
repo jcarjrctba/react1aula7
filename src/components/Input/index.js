@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 
-const Input = ({ label, hideContent, passarValor, className }) => {
+const Input = ({ label, hideContent, passarValor, color }) => {
   return (
     <div>
-      <label className={className} for="input">
+      <label style={{ color: color }} htmlFor="input">
         {label}
       </label>
       <input

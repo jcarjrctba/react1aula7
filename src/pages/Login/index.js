@@ -9,6 +9,7 @@ import { useState } from "react";
 
 const Login = () => {
   const navigate = useNavigate();
+
   const [title, setTitle] = useState("LOGIN");
   const [nomeDeUsuario, setNomeDeUsuario] = useState("");
   const [showError, setShowError] = useState(false);
@@ -16,16 +17,24 @@ const Login = () => {
   const [senha, setSenha] = useState("");
   const [usuarios, setUsuarios] = useState([
     {
+      id: 1,
       email: "joao@oi.net.br",
       password: "oidevs",
     },
     {
+      id: 2,
       email: "jady@oi.net.br",
       password: "oidevs",
     },
     {
+      id: 3,
       email: "raniel@oi.net.br",
       password: "caneta", // azul
+    },
+    {
+      id: 4,
+      email: "carol@oi.net.br",
+      password: "carol",
     },
   ]);
 
@@ -36,11 +45,12 @@ const Login = () => {
         {showError && <Usuario text="Credenciais inválidas" />}
         <Input
           label="Usuário"
-          className={inputColor}
+          color={inputColor}
           passarValor={(e) => setNomeDeUsuario(e.target.value)}
         />
         <Input
           label="Senha"
+          color={inputColor}
           hideContent
           passarValor={(e) => setSenha(e.target.value)}
         />
@@ -54,9 +64,9 @@ const Login = () => {
             );
 
             if (usuarioSelecionado) {
-              navigate("/home");
+              navigate("/home", { state: { listaDeUsuarios: usuarios } });
             } else {
-              setInputColor("errorLabel");
+              setInputColor("red");
               setShowError(true);
             }
           }}
